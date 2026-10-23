@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Month of Us ♡</title>
+<style>
+:root{
+  --lavender:#eee4ff;--lavender2:#d9c6f2;--purple:#6c4b8e;--deep:#3d2a50;
+  --pink:#f5dce9;--cream:#fffaf5;--muted:#786985;--white:#fffdfd;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{margin:0;color:var(--deep);font-family:Georgia,'Times New Roman',serif;background:var(--cream);line-height:1.75;overflow-x:hidden}
+button,a{font:inherit}
+a{color:inherit;text-decoration:none}
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:center;gap:clamp(12px,3vw,36px);flex-wrap:wrap;padding:13px 16px;background:rgba(255,250,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid #e8d9f2}
+nav a{font-family:Arial,sans-serif;font-size:.84rem;letter-spacing:.04em;color:var(--purple);padding:5px 3px}
+nav a:hover{color:#a15c96}
+.hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:70px 20px;position:relative;isolation:isolate;background:radial-gradient(ellipse at 15% 15%,#fff 0,transparent 35%),linear-gradient(135deg,#f8efff,#fbeaf1 55%,#f7f0ff);overflow:hidden}
+.hero:before,.hero:after{content:"✧";position:absolute;color:#b89ad6;font-size:5rem;opacity:.55;animation:twinkle 4s ease-in-out infinite}
+.hero:before{left:9%;top:15%}.hero:after{right:10%;bottom:15%;animation-delay:1.6s}
+.hero-inner{max-width:780px;position:relative;z-index:2}
+.eyebrow{text-transform:uppercase;letter-spacing:.2em;font: .72rem Arial,sans-serif;color:#9877b1}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(3rem,9vw,6.3rem);font-weight:normal;line-height:1.06;margin:18px 0;color:#593d75}
+.hero p{max-width:620px;margin:0 auto 26px;font-size:clamp(1.05rem,2.3vw,1.25rem);color:#695574}
+.heart{color:#c67eae}
+.cta{display:inline-block;border:0;border-radius:999px;padding:12px 23px;background:#755592;color:white;font: .9rem Arial,sans-serif;box-shadow:0 8px 22px #7c5b9630;transition:transform .25s,background .25s;cursor:pointer}
+.cta:hover{transform:translateY(-3px);background:#906bab}
+section{padding:clamp(60px,9vw,105px) 20px}
+.section-inner{max-width:1050px;margin:0 auto}
+.section-heading{text-align:center;margin:0 auto 46px;max-width:720px}
+.section-heading h2{font-size:clamp(2.1rem,5vw,3.3rem);font-weight:normal;line-height:1.15;color:#62467e;margin-bottom:12px}
+.section-heading p{color:var(--muted);margin-bottom:0}
+.story{background:#fffafc}
+.memory-feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,5vw,55px);align-items:center;margin:38px 0 72px}
+.memory-feature.reverse .photo-placeholder{order:2}
+.memory-feature.reverse .memory-copy{order:1}
+.photo-placeholder{min-height:300px;border:1.5px dashed #bba2d4;border-radius:25px;background:linear-gradient(145deg,#f5edff,#fff0f6);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#8c72a3;position:relative;overflow:hidden}
+.photo-placeholder .photo-icon{font-size:2.4rem;display:block;margin-bottom:8px}
+.photo-placeholder small{font: .72rem Arial,sans-serif;letter-spacing:.08em;display:block}
+.memory-copy h3{font-size:clamp(1.6rem,3vw,2.15rem);font-weight:normal;color:#76518f;margin-bottom:12px}
+.memory-copy p{color:#6c5b77}
+.memory-copy .caption{font-style:italic;color:#9a7ba7;font-size:.95rem}
+.silence-note{font-family:'Palatino Linotype',Palatino,Georgia,serif;font-style:italic;color:#9a72c4;font-size:1.03rem;letter-spacing:.02em;margin-top:-5px}
+.timeline{border-left:1px solid #d9c5e9;margin:20px 0 0 10px;padding-left:28px}
+.timeline-item{position:relative;margin:0 0 28px}
+.timeline-item:before{content:"♡";position:absolute;left:-39px;top:0;color:#b681bd;background:#fffafc;font-size:1.1rem;padding:0 4px}
+.letter{background:linear-gradient(145deg,#f1e8ff,#fff2f7)}
+.letter-envelope-stage{max-width:790px;margin:0 auto;text-align:center;perspective:1000px}
+.envelope-button{position:relative;display:block;width:min(100%,440px);height:255px;margin:8px auto 0;border:0;background:transparent;cursor:pointer;color:var(--deep);padding:0;transition:transform .3s ease;}
+.envelope-button:hover{transform:translateY(-4px)}
+.envelope-body{position:absolute;inset:25px 0 0;border-radius:12px 12px 22px 22px;background:linear-gradient(145deg,#f7eafa,#e3d0f4);box-shadow:0 20px 45px #73518b28;overflow:hidden}
+.envelope-body:before,.envelope-body:after{content:"";position:absolute;bottom:0;width:0;height:0;border-style:solid;z-index:2}
+.envelope-body:before{left:0;border-width:0 0 190px 220px;border-color:transparent transparent #e7d5f2 transparent}
+.envelope-body:after{right:0;border-width:190px 0 0 220px;border-color:transparent transparent transparent #f1e3f8}
+.envelope-flap{position:absolute;top:25px;left:0;width:100%;height:150px;background:linear-gradient(145deg,#d9c1ed,#f1ddec);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .8s cubic-bezier(.2,.75,.2,1);z-index:4;filter:drop-shadow(0 5px 3px #7b5a8a12)}
+.envelope-heart{position:absolute;z-index:5;left:50%;top:105px;transform:translateX(-50%);width:55px;height:55px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#fff6fc,#f3d9eb);color:#9568aa;font-size:1.8rem;box-shadow:0 5px 15px #76558b22;transition:opacity .3s ease}
+.envelope-label{position:absolute;z-index:6;left:0;right:0;bottom:18px;font: .83rem Arial,sans-serif;letter-spacing:.06em;color:#6c4b8e}
+.envelope-hint{font: .85rem Arial,sans-serif;color:#8b719d;margin:18px 0 0}
+.letter-envelope-stage.opened .envelope-button{transform:translateY(-6px)}
+.letter-envelope-stage.opened .envelope-flap{transform:rotateX(180deg);z-index:1}
+.letter-envelope-stage.opened .envelope-heart{opacity:0}
+.letter-paper{display:none;max-width:790px;margin:28px auto 0;background:rgba(255,253,253,.96);border:1px solid #eadcf5;border-radius:24px;padding:clamp(25px,6vw,58px);box-shadow:0 18px 50px #6b4d8010;text-align:left}
+.letter-paper.show-letter{display:block;animation:letterReveal .9s cubic-bezier(.2,.75,.2,1) both}
+.letter-paper h3{text-align:center;font-size:2rem;font-weight:normal;color:#76518f}
+.letter-paper p{white-space:pre-line}
+.letter-note{font: .78rem Arial,sans-serif;color:#9a83a7;text-align:center;border-top:1px dashed #ddcbe9;padding-top:18px;margin-top:25px}
+.forever{background:radial-gradient(ellipse at top,#594473 0,#30233f 60%,#261b32);color:#fff7ff;position:relative;overflow:hidden}
+.forever .section-heading h2{color:#f1e2ff}
+.forever .section-heading p{color:#d7c4e5}
+.forever .eyebrow{color:#d7b7e8}
+.future-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0 0 60px}
+.future-card{padding:25px 22px;border:1px solid #ffffff25;border-radius:20px;background:#ffffff0b;backdrop-filter:blur(6px)}
+.future-card .symbol{font-size:1.8rem;color:#e8c3e3}
+.future-card h3{font-weight:normal;font-size:1.35rem;color:#f1dff7;margin:8px 0}
+.future-card p{color:#e0d2e9;font-size:.96rem;margin:0}
+.poem{max-width:760px;margin:0 auto;text-align:center}
+.poem h3{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:normal;color:#f4d9f0;margin-bottom:25px}
+.poem p{font-size:clamp(1rem,2vw,1.13rem);color:#f1e6f4;white-space:pre-line}
+.poem .signature{margin-top:28px;color:#e7bfe1;font-style:italic}
+.surprise-wrap{text-align:center;margin:48px auto 0}
+#surprise{display:none;max-width:760px;margin:28px auto 0;padding:clamp(24px,5vw,48px);border:1px solid #ffffff30;border-radius:24px;background:linear-gradient(145deg,#ffffff12,#b895d51a);color:#f5eafa;box-shadow:0 18px 60px #10091d35}
+#surprise.opening{animation:letterReveal .9s cubic-bezier(.2,.75,.2,1) both}
+.surprise-seal{width:74px;height:74px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f5dce9,#d9c6f2);color:#674781;font-size:2rem;box-shadow:0 0 0 8px #ffffff0a,0 10px 30px #120a1e30}
+.poem{max-width:760px;margin:0 auto;text-align:center}
+#surprise .poem p{line-height:2.05}
+#surprise .poem h3{margin-bottom:24px}
+@keyframes letterReveal{from{opacity:0;transform:translateY(22px) scale(.98);filter:blur(4px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+.silence-note{margin-top:25px;color:#b99ad8!important;font-style:italic;font-family:'Palatino Linotype',Palatino,Georgia,serif;font-size:1.02rem;text-align:right}
+footer{text-align:center;padding:30px 18px;background:#241a30;color:#d9c6e4;font-size:.9rem}
+footer p{margin:3px}
+.petal{position:fixed;z-index:1;top:-30px;pointer-events:none;color:#c5a1dc;opacity:.55;animation:fall linear infinite}
+.petal:nth-of-type(1){left:8%;animation-duration:16s}.petal:nth-of-type(2){left:27%;animation-duration:19s;animation-delay:3s}.petal:nth-of-type(3){left:68%;animation-duration:17s;animation-delay:1s}.petal:nth-of-type(4){left:88%;animation-duration:21s;animation-delay:5s}
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+@keyframes twinkle{0%,100%{transform:scale(.9);opacity:.35}50%{transform:scale(1.12);opacity:.8}}
+
+/* Lily watermark + extra soft, dreamy motion */
+.lily-watermarks{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;opacity:.15}
+.lily-watermarks svg{position:absolute;width:clamp(190px,28vw,390px);height:auto;fill:none;stroke:#8e69b0;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lily-watermarks .lily-a{left:-65px;top:11vh;transform:rotate(-18deg)}
+.lily-watermarks .lily-b{right:-70px;top:48vh;transform:rotate(20deg) scale(1.1)}
+.lily-watermarks .lily-c{left:8%;bottom:-115px;transform:rotate(14deg) scale(.8)}
+nav,.hero,.story,.letter,.forever,footer{position:relative}
+nav{z-index:20}.hero-inner,.section-inner,footer p,footer .save-wrap{position:relative;z-index:3}
+section:after,.hero:after{pointer-events:none}
+.hero{background-size:200% 200%;animation:lavenderDrift 18s ease-in-out infinite}
+.hero-inner h1{animation:titleFloat 5s ease-in-out infinite}
+.cta{position:relative;overflow:hidden}
+.cta:after{content:"";position:absolute;top:-60%;left:-45%;height:220%;width:28%;background:#ffffff55;transform:rotate(25deg);transition:left .7s ease}
+.cta:hover:after{left:125%}
+.memory-feature,.future-card,.letter-paper{transition:transform .45s ease,box-shadow .45s ease}
+.memory-feature:hover{transform:translateY(-3px)}
+.future-card:hover{transform:translateY(-7px);box-shadow:0 18px 38px #160b2638}
+.photo-placeholder{cursor:pointer;transition:border-color .3s,box-shadow .3s,transform .3s}
+.photo-placeholder:hover{border-color:#9d79c1;box-shadow:0 12px 30px #7e5a9b18}
+.photo-placeholder .photo-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.photo-placeholder .photo-choose{display:inline-block;margin-top:12px;border:1px solid #c6afd9;border-radius:999px;padding:8px 13px;background:#fff9ff;color:#76518f;font: .76rem Arial,sans-serif;cursor:pointer;transition:background .25s,transform .25s}
+.photo-placeholder .photo-choose:hover{background:#f0e3fb;transform:translateY(-2px)}
+.photo-placeholder .photo-preview{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.photo-placeholder.has-photo{padding:0;border-style:solid;border-color:#d8c4e9;box-shadow:0 12px 35px #6d4c851c}
+.photo-placeholder.has-photo .photo-preview{display:block}
+.photo-placeholder.has-photo .photo-tools{position:absolute;z-index:2;bottom:12px;left:0;right:0;display:flex;justify-content:center}
+.photo-placeholder.has-photo .photo-hint{display:none}
+.photo-tools .photo-choose{background:#fffaf0e8;box-shadow:0 3px 14px #30213a25}
+.save-wrap{margin-top:20px;text-align:center}
+.save-wrap p{font-size:.8rem;color:#d9c6e4;margin:10px 0 0}
+.save-site{display:inline-block;border:1px solid #c8b0dc;border-radius:999px;padding:11px 18px;background:linear-gradient(135deg,#fff7ff,#eadcf7);color:#674781;font: .84rem Arial,sans-serif;cursor:pointer;box-shadow:0 8px 20px #12091e24;transition:transform .25s,box-shadow .25s}
+.save-site:hover{transform:translateY(-3px);box-shadow:0 12px 25px #12091e38}
+.float-heart{position:fixed;z-index:30;pointer-events:none;bottom:-30px;color:#d4a6d7;text-shadow:0 3px 14px #b98ac455;animation:heartDrift linear forwards}
+@keyframes heartDrift{0%{transform:translateY(0) rotate(0) scale(.7);opacity:0}12%{opacity:.8}85%{opacity:.65}100%{transform:translateY(-115vh) rotate(35deg) scale(1.25);opacity:0}}
+@keyframes lavenderDrift{0%,100%{background-position:0% 45%}50%{background-position:100% 55%}}
+@keyframes titleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes petalSway{0%,100%{margin-left:0}50%{margin-left:22px}}
+.petal{animation-name:fall,petalSway;animation-duration:18s,4s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite}
+@media(max-width:700px){
+ .lily-watermarks{opacity:.11}.lily-watermarks .lily-a{left:-95px;top:17vh}.lily-watermarks .lily-b{right:-105px;top:62vh}
+ .photo-placeholder .photo-choose{font-size:.72rem}
+}
+
+@media(max-width:700px){
+ nav{gap:10px;padding:11px 8px}nav a{font-size:.75rem}
+ .memory-feature{grid-template-columns:1fr;gap:20px;margin:28px 0 54px}
+ .memory-feature.reverse .photo-placeholder,.memory-feature.reverse .memory-copy{order:initial}
+ .photo-placeholder{min-height:230px}
+ .future-grid{grid-template-columns:1fr}
+ .hero{min-height:78vh}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.fade-in{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="lily-watermarks" aria-hidden="true">
+  <svg class="lily-a" viewBox="0 0 260 300"><g>
+    <path d="M130 145 C120 95 75 70 62 25 C112 34 137 69 130 145Z"/><path d="M130 145 C87 112 48 125 18 94 C66 73 109 100 130 145Z"/><path d="M130 145 C150 94 193 72 198 24 C153 39 128 83 130 145Z"/><path d="M130 145 C173 112 214 128 242 95 C195 75 152 100 130 145Z"/><path d="M130 145 C110 104 112 62 130 8 C151 62 148 106 130 145Z"/><path d="M130 145 C125 190 111 222 123 286"/><path d="M122 230 C82 198 62 214 53 238 C83 242 105 239 122 230Z"/><path d="M123 260 C158 228 182 241 194 262 C165 270 143 267 123 260Z"/><path d="M130 143 l-28 -19 M130 143 l30 -21 M130 143 l-3 -35 M130 143 l14 -34"/><circle cx="130" cy="145" r="7"/></g></svg>
+  <svg class="lily-b" viewBox="0 0 260 300"><g>
+    <path d="M130 145 C120 95 75 70 62 25 C112 34 137 69 130 145Z"/><path d="M130 145 C87 112 48 125 18 94 C66 73 109 100 130 145Z"/><path d="M130 145 C150 94 193 72 198 24 C153 39 128 83 130 145Z"/><path d="M130 145 C173 112 214 128 242 95 C195 75 152 100 130 145Z"/><path d="M130 145 C110 104 112 62 130 8 C151 62 148 106 130 145Z"/><path d="M130 145 C125 190 111 222 123 286"/><path d="M122 230 C82 198 62 214 53 238 C83 242 105 239 122 230Z"/><path d="M123 260 C158 228 182 241 194 262 C165 270 143 267 123 260Z"/><path d="M130 143 l-28 -19 M130 143 l30 -21 M130 143 l-3 -35 M130 143 l14 -34"/><circle cx="130" cy="145" r="7"/></g></svg>
+  <svg class="lily-c" viewBox="0 0 260 300"><g>
+    <path d="M130 145 C120 95 75 70 62 25 C112 34 137 69 130 145Z"/><path d="M130 145 C87 112 48 125 18 94 C66 73 109 100 130 145Z"/><path d="M130 145 C150 94 193 72 198 24 C153 39 128 83 130 145Z"/><path d="M130 145 C173 112 214 128 242 95 C195 75 152 100 130 145Z"/><path d="M130 145 C110 104 112 62 130 8 C151 62 148 106 130 145Z"/><path d="M130 145 C125 190 111 222 123 286"/><path d="M122 230 C82 198 62 214 53 238 C83 242 105 239 122 230Z"/><path d="M123 260 C158 228 182 241 194 262 C165 270 143 267 123 260Z"/><path d="M130 143 l-28 -19 M130 143 l30 -21 M130 143 l-3 -35 M130 143 l14 -34"/><circle cx="130" cy="145" r="7"/></g></svg>
+</div>
+
+<div class="petal">✿</div><div class="petal">✧</div><div class="petal">❀</div><div class="petal">✿</div>
+<nav aria-label="Main navigation">
+  <a href="#story">Our Story</a>
+  <a href="#letter">A Letter for Neo</a>
+  <a href="#forever">A Little Forever</a>
+</nav>
+<header class="hero">
+  <div class="hero-inner fade-in">
+    <div class="eyebrow">one month of us · october 2026</div>
+    <h1>A Month<br>of Us <span class="heart">♡</span></h1>
+    <p>Some people come into your life and change the way ordinary moments feel. You became one of those people for me, mi reina.</p>
+    <a class="cta" href="#story">Step into our little world ♡</a>
+  </div>
+</header>
+
+<section class="story" id="story">
+  <div class="section-inner">
+    <div class="section-heading fade-in">
+      <div class="eyebrow">chapter one</div>
+      <h2>Our Story ♡</h2>
+      <p>A little collection of the moments that have made this first month ours.</p>
+    </div>
+
+    <article class="memory-feature fade-in">
+      <div class="photo-placeholder" data-photo-slot="the-sound-of-you">
+        <img class="photo-preview" alt="The Sound Of You photo preview">
+        <input class="photo-input" type="file" accept="image/*" aria-label="Choose a photo for the sound of you">
+        <div class="photo-hint"><span class="photo-icon">🌸</span><strong>ADD YOUR PHOTO HERE</strong><small>THE SOUND OF YOU</small><label class="photo-choose">Choose a photo ♡</label></div>
+        <div class="photo-tools"><label class="photo-choose">Change photo ♡</label></div>
+      </div>
+      <div class="memory-copy">
+        <div class="eyebrow">a favourite little thing</div>
+        <h3>The Sound of You ♡</h3>
+        <p>There's something about your voice, mi reina, that I don't think I'll ever fully know how to explain. I could listen to you talk about the smallest things and still wish the moment would last a little longer. Even after we've stopped talking, your voice sometimes stays in my thoughts, reminding me how lucky I am to know you. It's not always about what you're saying; sometimes, it's simply the comfort of hearing you. If my heart could choose a favourite sound in this world, I think it would choose yours, mi reina. ♡</p>
+      </div>
+    </article>
+
+    <article class="memory-feature reverse fade-in">
+      <div class="photo-placeholder" data-photo-slot="the-silence-without-you">
+        <img class="photo-preview" alt="The Silence Without You photo preview">
+        <input class="photo-input" type="file" accept="image/*" aria-label="Choose a photo for the silence without you">
+        <div class="photo-hint"><span class="photo-icon">💌</span><strong>ADD YOUR PHOTO HERE</strong><small>THE SILENCE WITHOUT YOU</small><label class="photo-choose">Choose a photo ♡</label></div>
+        <div class="photo-tools"><label class="photo-choose">Change photo ♡</label></div>
+      </div>
+      <div class="memory-copy">
+        <div class="eyebrow">when I wish you were near</div>
+        <h3>The Silence Without You ♡</h3>
+        <p>Mi reina, it's strange how different everything can feel when you're not around. I can go about my day, do all the usual things, and still find little moments where I wish you were beside me. Sometimes, I don't even need anything special from you; I just wish I could be in your presence, hear your voice, see your smile, and feel that quiet happiness that comes with having you near. I miss you in ways that are difficult to put into words, in the little pauses between conversations and in the moments when something happens and you're the first person I want to tell. I miss the comfort of you, the sound of you, and simply knowing that you're there. It's made me realise that your presence has become such a beautiful part of my world, mi reina. And when you're not here, I don't just miss talking to you — I miss you. I long for the moments when we can be together again, when I won't have to imagine what it would feel like to have you beside me because I'll get to experience it for real. Until then, I'll carry all this love for you through every day, looking forward to the next time I get to be close to you. ♡</p>
+        <p class="caption">“Some people leave an impression on your heart. You, mi reina, have become a presence I find myself longing for, even in the quietest moments.” ♡</p>
+        <p class="silence-note">(where you are part 2)</p>
+      </div>
+    </article>
+
+    <div class="section-heading fade-in">
+      <h2>How It All Began ♡</h2>
+      <p>From one little moment to a story we're still writing.</p>
+    </div>
+
+    <article class="memory-feature reverse fade-in">
+      <div class="photo-placeholder" data-photo-slot="our-first-date">
+        <img class="photo-preview" alt="Our First Date photo preview">
+        <input class="photo-input" type="file" accept="image/*" aria-label="Choose a photo for our first date">
+        <div class="photo-hint"><span class="photo-icon">🎬</span><strong>ADD YOUR PHOTO HERE</strong><small>OUR FIRST DATE</small><label class="photo-choose">Choose a photo ♡</label></div>
+        <div class="photo-tools"><label class="photo-choose">Change photo ♡</label></div>
+      </div>
+      <div class="memory-copy">
+        <h3>After Spider-Man ♡</h3>
+        <p>After watching Spider-Man, we spent hours talking, and somewhere in all that time, we started holding hands. It became one of those beginnings I know I'll always look back on with a soft spot in my heart.</p>
+        <p class="caption">A little beginning that became something so special.</p>
+      </div>
+    </article>
+
+    <article class="memory-feature fade-in">
+      <div class="photo-placeholder" data-photo-slot="our-first-hand-hold">
+        <img class="photo-preview" alt="Our First Hand Hold photo preview">
+        <input class="photo-input" type="file" accept="image/*" aria-label="Choose a photo for our first hand hold">
+        <div class="photo-hint"><span class="photo-icon">🤍</span><strong>ADD YOUR PHOTO HERE</strong><small>OUR FIRST HAND-HOLD</small><label class="photo-choose">Choose a photo ♡</label></div>
+        <div class="photo-tools"><label class="photo-choose">Change photo ♡</label></div>
+      </div>
+      <div class="memory-copy">
+        <h3>The First Time We Held Hands ♡</h3>
+        <p>Some moments don't need to be big to become unforgettable. This is one of those memories I'll always keep close.</p>
+        <p class="caption">ADD YOUR OWN LITTLE DETAILS HERE ♡</p>
+      </div>
+    </article>
+
+    <article class="memory-feature reverse fade-in">
+      <div class="photo-placeholder" data-photo-slot="time-with-you">
+        <img class="photo-preview" alt="Time With You photo preview">
+        <input class="photo-input" type="file" accept="image/*" aria-label="Choose a photo for time with you">
+        <div class="photo-hint"><span class="photo-icon">⏳</span><strong>ADD YOUR PHOTO HERE</strong><small>TIME WITH YOU</small><label class="photo-choose">Choose a photo ♡</label></div>
+        <div class="photo-tools"><label class="photo-choose">Change photo ♡</label></div>
+      </div>
+      <div class="memory-copy">
+        <h3>How Time Flies When It's You ♡</h3>
+        <p>It feels like only yesterday that we were getting to know each other, talking for hours and slowly becoming something special. And somehow, here we are, celebrating our first month together. It's funny how time can move so quickly, yet leave behind so many little moments that mean everything to me. A month might seem small to the world, but to me, it's a month of smiles, memories, late-night thoughts, and learning just how much one person can mean. I know we still have so much to discover about each other, so many memories to make, and so many chapters waiting for us. If this first month has taught me anything, mi reina, it's that time passing doesn't scare me when I get to spend it loving you. I don't just want to remember how our story began; I want to see how beautifully it continues. ♡</p>
+      </div>
+    </article>
+    <div class="section-heading fade-in">
+      <p>And this is only the beginning, mi reina. There's so much more of our story waiting for us. ♡</p>
+    </div>
+  </div>
+</section>
+
+<section class="letter" id="letter">
+  <div class="section-inner">
+    <div class="section-heading fade-in">
+      <div class="eyebrow">chapter two</div>
+      <h2>A Letter for Neo 💌</h2>
+      <p>For the things that deserve more than a passing moment.</p>
+    </div>
+    <div class="letter-envelope-stage fade-in" id="letterEnvelopeStage">
+      <button class="envelope-button" id="letterEnvelopeButton" type="button" aria-expanded="false" aria-controls="chapterTwoLetter" aria-label="Open your anniversary letter">
+        <span class="envelope-body" aria-hidden="true"></span>
+        <span class="envelope-flap" aria-hidden="true"></span>
+        <span class="envelope-heart" aria-hidden="true">♡</span>
+        <span class="envelope-label">FOR MY MI REINA · WITH LOVE</span>
+      </button>
+      <p class="envelope-hint" id="envelopeHint">A little letter is waiting inside. Tap the envelope to open it. ♡</p>
+    </div>
+    <div class="letter-paper" id="chapterTwoLetter" aria-hidden="true">
+      <h3>To My Neo, My Ms Masengi ♡</h3>
+      <p>My love,</p>
+      <p>Happy one month, Neo. 💜</p>
+      <p>It's crazy to think that it's already been a month of us. One month of little moments, conversations, laughter, and memories that have slowly become some of my favourite things to look back on. I don't know if a month sounds like a long time to anyone else, but to me, it's been enough time for you to become someone who means more to me than I sometimes know how to explain.</p>
+      <p>Sometimes I think about our first date, after watching Spider-Man. I think about how we ended up spending hours just talking, how one conversation turned into another, until eventually we started holding hands. It's such a simple memory, but there's something about it that makes me want to keep it close forever. If I could go back to that night, knowing how much you would come to mean to me, I'd choose to live it all over again. Every conversation, every little moment, every second that brought us closer. I'd want to experience it all again, because it led me to you.</p>
+      <p>You make me feel something that I don't think I can put into perfect words. You make me feel like I matter to someone, like I have a place in someone's heart. You make me feel fulfilled in a way I didn't know I needed, and there's a comfort in knowing that I have you in my life. It's not that the world suddenly becomes perfect when you're around. It's that having you makes the ordinary parts of it feel a little more beautiful.</p>
+      <p>And Neo, I really wish you knew how much you actually mean to me.</p>
+      <p>Sometimes I stay up late thinking about you, replaying little moments in my head, thinking about our conversations, or remembering your voice. Sometimes I catch myself smiling at the smallest things because somehow, they remind me of you. And even when I'm joking around, teasing you, or acting like I'm not being serious, there's a part of me that hopes you know there's so much love behind all of it.</p>
+      <p>Because, Neo, I really do love you. More than my jokes probably let on, more than I always know how to express, and more than these words could ever fully explain. I don't want you to have to guess how much you matter to me. I want you to feel it in the way I care about you, the way I listen to you, the way I remember the little things, and the way I keep choosing to be here with you.</p>
+      <p>I want to give this relationship my genuine effort, my patience, my honesty, and the best of what I have to offer. I want to be someone who makes you feel loved, valued, and appreciated, because you deserve to know that what we have matters to me.</p>
+      <p>One month ago, we were just beginning to write this little story of ours. Now, we have memories that belong only to us, moments I can look back on and smile about, and so many things we have yet to experience together. I know we still have so much to learn about each other, and I don't expect every day to be perfect. I just hope that, through the good days and the difficult ones, we keep choosing to understand each other, to communicate, and to grow together.</p>
+      <p>If there's one thing I want you to take from this letter, it's that you are not just someone I happen to have in my life. You are someone I am genuinely grateful for. Someone whose voice can stay in my thoughts long after we've said goodbye. Someone who can make an ordinary night feel unforgettable just by being there.</p>
+      <p>And if I could give you one thing, it would be the ability to see yourself through my eyes for just a moment. Maybe then you'd understand why I smile when I think about you, why that night after Spider-Man means so much to me, and why even the smallest memories with you have found such a special place in my heart.</p>
+      <p>Happy first month, Neo. ♡</p>
+      <p>Thank you for being part of my life, for the memories we've already made, and for giving me someone so special to look forward to. I don't know everything our future holds, but I know I'm excited to keep discovering it with you, one little moment at a time.</p>
+      <p>And if we ever look back on this letter months or years from now, I hope we smile at how our story began. I hope we remember that this was our first month, when we were still discovering all the little things about each other, and that even then, you already meant so much to me.</p>
+      <p>One month down, and so much more of our story left to write.</p>
+      <p><strong>I love you, Neo. More than my jokes say, more than my shyness sometimes shows, and more than I could ever fit into one little letter.</strong></p>
+      <p>Always your Fafankie, ♡</p>
+      <div class="letter-note">A little letter for our first month together ♡</div>
+    </div>
+  </div>
+</section>
+
+<section class="forever" id="forever">
+  <div class="section-inner">
+    <div class="section-heading fade-in">
+      <div class="eyebrow">chapter three</div>
+      <h2>A Little Forever ♡</h2>
+      <p>Not a promise that every day will be perfect — just the hope of sharing many more days, memories, and beginnings with you.</p>
+    </div>
+    <div class="future-grid">
+      <article class="future-card fade-in"><div class="symbol">♡</div><h3>More Firsts Together</h3><p>More dates, more hand-holding, more little firsts, and memories we haven't even imagined yet.</p></article>
+      <article class="future-card fade-in"><div class="symbol">✧</div><h3>The Ordinary Days</h3><p>Long conversations, random laughter, hearing your voice, and simply getting to spend time with you.</p></article>
+      <article class="future-card fade-in"><div class="symbol">❀</div><h3>Growing Together</h3><p>Learning each other more, cheering for each other's dreams, and growing with patience, kindness, and care.</p></article>
+    </div>
+    <div class="section-heading fade-in" style="margin-top:52px;margin-bottom:28px">
+      <p>I've saved one last letter for you, mi reina. Open it when you're ready for the last little piece of my heart. ♡</p>
+    </div>
+    <div class="surprise-wrap fade-in">
+      <button class="cta" id="surpriseButton" type="button" aria-expanded="false" aria-controls="surprise">Open your final letter 💌</button>
+      <div id="surprise" aria-hidden="true">
+        <div class="surprise-seal" aria-hidden="true">♡</div>
+        <div class="poem">
+          <div class="eyebrow">a letter saved just for mi reina</div>
+          <h3>A Thousand Tomorrows With You</h3>
+          <p>One month has passed, yet it feels like a start,
+A new little chapter tucked close to my heart.
+And if time keeps on moving, as time always will,
+I'll keep finding new reasons to love you still.
+
+I'll treasure the firsts that are waiting ahead,
+The sweet little moments we'll make as we tread.
+More stories to tell, more laughter to share,
+More proof in the small things that show I am there.
+
+I want ordinary mornings and late-night talks too,
+The simple, small moments that shine because you.
+The sound of your voice when the whole day is through,
+And the comfort of knowing I got time with you.
+
+We'll learn as we go, with our own pace to find,
+With patience and care, and with hearts that stay kind.
+I'll cheer for your dreams and the things you pursue,
+And keep making room for the growing of you.
+
+So here's to tomorrow, and all that comes next,
+To words still unwritten and pages not yet texted.
+To memories waiting, to laughter, to truth,
+To all of the days I may get to spend with you.
+
+You are not just a moment that I'll keep from days gone by,
+Not just a pretty memory beneath a fading sky.
+You're someone I am grateful for, today and all that's new,
+And if my heart could write its own last line, it'd still write: you.</p>
+          <p class="signature">One month down, mi reina.<br>So many pages left to write.<br>And if I get to write them with you,<br>then the future feels just right. ♡</p>
+          <h3 style="margin-top:28px">I love you, mi reina.</h3>
+          <p class="signature">Always your Fafankie ♡</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>Made with all my love, by Fafa, for mi reina. ♡</p>
+  <p>Our first month — October 2026. The beginning of our little forever. 💜</p>
+  <div class="save-wrap"><button class="save-site" id="saveSiteButton" type="button">Save my finished website ♡</button><p>Choose your photos above, then save a copy with the pictures built in.</p></div>
+</footer>
+<script>
+const revealEls = document.querySelectorAll('.fade-in');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.12});
+  revealEls.forEach(el => observer.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('visible'));
+}
+document.getElementById('letterEnvelopeButton').addEventListener('click', function(){
+  const stage = document.getElementById('letterEnvelopeStage');
+  const letter = document.getElementById('chapterTwoLetter');
+  const hint = document.getElementById('envelopeHint');
+  const isOpen = stage.classList.contains('opened');
+  stage.classList.toggle('opened', !isOpen);
+  this.setAttribute('aria-expanded', String(!isOpen));
+  letter.classList.toggle('show-letter', !isOpen);
+  letter.setAttribute('aria-hidden', String(isOpen));
+  hint.textContent = isOpen ? 'A little letter is waiting inside. Tap the envelope to open it. ♡' : 'For you, mi reina — every word from my heart. ♡';
+  if (!isOpen) setTimeout(() => letter.scrollIntoView({behavior:'smooth', block:'center'}), 450);
+});
+document.getElementById('surpriseButton').addEventListener('click', function(){
+  const surprise = document.getElementById('surprise');
+  const isOpen = surprise.style.display === 'block';
+  surprise.style.display = isOpen ? 'none' : 'block';
+  surprise.setAttribute('aria-hidden', String(isOpen));
+  this.textContent = isOpen ? 'Open your final letter 💌' : 'Close your letter ♡';
+  this.setAttribute('aria-expanded', String(!isOpen));
+  if (!isOpen) {
+    surprise.classList.remove('opening');
+    void surprise.offsetWidth;
+    surprise.classList.add('opening');
+    setTimeout(() => surprise.scrollIntoView({behavior:'smooth', block:'start'}), 100);
+  }
+});
+
+
+// Photo slots: choose images from your computer, preview them, then export a self-contained HTML file.
+document.querySelectorAll('.photo-placeholder').forEach(slot => {
+  const input = slot.querySelector('.photo-input');
+  const preview = slot.querySelector('.photo-preview');
+  const labels = slot.querySelectorAll('.photo-choose');
+  labels.forEach(label => label.addEventListener('click', () => input.click()));
+  slot.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
+  input.addEventListener('change', () => {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { alert('Please choose an image file.'); input.value=''; return; }
+    const reader = new FileReader();
+    reader.onload = () => { preview.src = reader.result; slot.classList.add('has-photo'); };
+    reader.readAsDataURL(file);
+  });
+});
+// A few tiny hearts float upward slowly for a soft, dreamy feel.
+function makeFloatingHeart(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const heart=document.createElement('span');
+  heart.className='float-heart';
+  heart.textContent=['♡','✧','♥','❀'][Math.floor(Math.random()*4)];
+  heart.style.left=(5+Math.random()*90)+'vw';
+  heart.style.fontSize=(12+Math.random()*17)+'px';
+  heart.style.animationDuration=(10+Math.random()*9)+'s';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),20000);
+}
+setInterval(makeFloatingHeart,2200);
+// Export a copy of this page with chosen photos embedded, so it works offline and keeps the pictures.
+document.getElementById('saveSiteButton').addEventListener('click', function(){
+  const clone=document.documentElement.cloneNode(true);
+  const originalSlots=document.querySelectorAll('.photo-placeholder');
+  const clonedSlots=clone.querySelectorAll('.photo-placeholder');
+  originalSlots.forEach((slot,index)=>{
+    const img=slot.querySelector('.photo-preview');
+    const target=clonedSlots[index];
+    if(img && img.src && slot.classList.contains('has-photo')){
+      target.classList.add('has-photo');
+      target.querySelector('.photo-preview').setAttribute('src',img.src);
+      target.querySelector('.photo-preview').setAttribute('alt',slot.querySelector('small')?.textContent || 'Our memory photo');
+    }
+    target.querySelector('.photo-input')?.remove();
+    target.querySelector('.photo-hint')?.remove();
+    target.querySelector('.photo-tools')?.remove();
+  });
+  clone.querySelector('#saveSiteButton')?.remove();
+  clone.querySelector('.save-wrap p')?.remove();
+  const html='<!DOCTYPE html>\n'+clone.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement('a');
+  link.href=url;link.download='a_month_of_us_with_photos.html';
+  document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+});
+
+</script>
+</body>
+</html>
